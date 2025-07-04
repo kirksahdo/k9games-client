@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { setMedia } from 'mock-match-media'
 
 import Logo from '.'
 
@@ -34,6 +35,15 @@ describe('<Logo />', () => {
     expect(screen.getByLabelText(/K9Games/i).parentElement).toHaveClass(
       'w-44',
       'h-14'
+    )
+  })
+
+  it('should render a bigger logo without text if render on small screen', () => {
+    setMedia({ width: '600px' })
+    render(<Logo hideText />)
+    expect(screen.getByLabelText(/K9Games/i).parentElement).toHaveClass(
+      'max-md:w-[5.8rem]',
+      'max-md:h-[4.5rem]'
     )
   })
 })
