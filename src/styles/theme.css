@@ -17,10 +17,20 @@
   --color-lightGray: #eaeaea;
   --color-gray: #8f8f8f;
   --color-darkGray: #2e2f42;
+
+  --gradient-primary: linear-gradient(
+    179deg,
+    #ff5f5f -14.51%,
+    #f062c0 102.86%,
+    #f23131 102.86%
+  );
+  --gradient-primary-hover:
+    linear-gradient(180deg, #e35565 0%, #d958a6 100%),
+    linear-gradient(179deg, #ff5f5f -14.51%, #f062c0 102.86%, #f23131 102.86%);
+
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-bold: 600;
-
   --spacing-xxsmall: 0.8rem;
   --spacing-xsmall: 1.6rem;
   --spacing-small: 2.4rem;
