@@ -3,9 +3,21 @@ import OverlayMenu from './components/OverlayMenu'
 import WrapperFunctions from './components/WrapperFunctions'
 import WrapperLogo from './components/WrapperLogo'
 import WrapperMenuBar from './components/WrapperMenuBar'
+import { MenuLinkProps } from './components/MenuLink'
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false)
+
+  const menuItems: MenuLinkProps[] = [
+    {
+      href: '#',
+      label: 'Início'
+    },
+    {
+      href: '#',
+      label: 'Explorar'
+    }
+  ]
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -19,7 +31,11 @@ const Menu = () => {
 
       <WrapperFunctions />
 
-      <OverlayMenu isOpen={isOpen} toggleMenu={toggleMenu} />
+      <OverlayMenu
+        isOpen={isOpen}
+        toggleMenu={toggleMenu}
+        menuItems={menuItems}
+      />
     </nav>
   )
 }
