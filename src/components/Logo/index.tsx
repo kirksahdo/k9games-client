@@ -4,24 +4,36 @@ export type LogoProps = {
   color?: 'white' | 'black'
   size?: 'normal' | 'large'
   hideText?: boolean
-}
+} & React.HTMLAttributes<HTMLDivElement>
 
 const Logo: React.FC<LogoProps> = ({
   color = 'white',
   size = 'normal',
-  hideText
+  hideText,
+  className,
+  ...props
 }) => {
-  const sizeClass = size === 'large' ? 'w-80 h-24' : 'w-44 h-14'
+  const viewBox = hideText ? '0 0 60 48' : '0 0 158 48'
+
+  const sizeClass =
+    size === 'large'
+      ? hideText
+        ? 'w-24 h-24'
+        : 'w-80 h-24'
+      : hideText
+        ? 'w-14 h-14'
+        : 'w-44 h-14'
 
   return (
     <div
-      className={`text-${color} ${sizeClass} max-md:w-[5.8rem] max-md:h-[4.5rem]`}
+      className={`text-${color} ${sizeClass} max-md:w-[5.8rem] max-md:h-[4.5rem] ${className}`}
+      {...props}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="max-md:h-[4.5rem]"
         fill="none"
-        viewBox="0 0 158 48"
+        viewBox={viewBox}
         role="img"
         aria-label="K9Games"
       >
@@ -71,6 +83,7 @@ const Logo: React.FC<LogoProps> = ({
           ry="1.5"
           transform="matrix(1 0 0 1 39.7 17.6)"
         />
+
         {!hideText && (
           <path
             className={`max-md:hidden max-md:pointer-events-none`}
