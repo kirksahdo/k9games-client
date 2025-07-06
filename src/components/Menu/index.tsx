@@ -11,11 +11,11 @@ const Menu = () => {
   const menuItems: MenuLinkProps[] = [
     {
       href: '#',
-      label: 'Início'
+      label: 'Home'
     },
     {
       href: '#',
-      label: 'Explorar'
+      label: 'Explore'
     }
   ]
 

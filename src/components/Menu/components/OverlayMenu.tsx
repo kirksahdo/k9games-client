@@ -15,7 +15,7 @@ const CloseButton = ({ toggleMenu }: Pick<OverlayMenuProps, 'toggleMenu'>) => {
   return (
     <button
       type="button"
-      className="size-8 flex justify-center items-center cursor-pointer absolute top-8 right-6"
+      className="size-8 flex justify-center items-center cursor-pointer absolute top-8 right-6 z-50"
       onClick={toggleMenu}
       aria-label="Close Menu"
     >
@@ -25,16 +25,20 @@ const CloseButton = ({ toggleMenu }: Pick<OverlayMenuProps, 'toggleMenu'>) => {
 }
 
 const LoggedOutButtons = () => (
-  <div className="flex flex-col gap-3 w-2/3 items-center">
+  <div
+    className={
+      'flex flex-col gap-3 w-2/3 items-center transition-transform duration-300 ease-in-out'
+    }
+  >
     <Button size="large" text="Entrar" fullWidth mode="primary" />
 
-    <h4 className="text-[12px] text-black font-medium"> ou </h4>
+    <h4 className="text-[12px] text-black font-medium"> or </h4>
 
     <Link
       href="#"
       className="text-[16px] font-medium text-primary cursor-pointer relative"
     >
-      Crie sua conta
+      Sign Up
       <span
         className="
           absolute
@@ -69,7 +73,12 @@ const OverlayMenu = ({ isOpen, toggleMenu, menuItems }: OverlayMenuProps) => {
     >
       <CloseButton toggleMenu={toggleMenu} />
 
-      <div className="flex flex-1 flex-col justify-center items-center gap-64">
+      <div
+        className={clsx(
+          'flex flex-1 flex-col justify-center items-center gap-64 transition-transform duration-300 ease-in-out',
+          isOpen ? 'translate-y-0' : 'translate-y-12'
+        )}
+      >
         <MenuItems menuItems={menuItems} />
         <LoggedOutButtons />
       </div>
