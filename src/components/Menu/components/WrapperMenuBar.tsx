@@ -9,7 +9,7 @@ const WrapperMenuBar = ({ toggleMenu }: WrapperMenuBar) => {
   return (
     <div className="flex-1">
       <MenuIcon
-        className="size-7 text-white cursor-pointer"
+        className="size-6 text-white cursor-pointer"
         aria-label="Open Menu"
         onClick={toggleMenu}
       />

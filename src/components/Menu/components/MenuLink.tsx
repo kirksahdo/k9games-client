@@ -5,28 +5,28 @@ import React from 'react'
 export type MenuLinkProps = {
   href: string
   label: string
+  mode: 'desktop' | 'mobile'
 }
 
-const MenuLink = ({ href, label }: MenuLinkProps) => {
+const MenuLink = ({ href, label, mode }: MenuLinkProps) => {
+  const textClass = {
+    desktop: 'text-white text-[12px] font-medium',
+    mobile: 'text-black text-[28px] font-bold'
+  }
+
   return (
     <Link
       aria-label={`${label} Link`}
-      className={clsx('text-[28px] font-bold relative group')}
+      className={clsx('relative group', textClass[mode])}
       href={href}
     >
       <span>{label}</span>
       <span
-        className="
-          absolute
-          bottom-0
-          left-1/2
-          w-0
-          h-[0.3rem]
-          bg-primary
-          transition-all duration-200
-          group-hover:w-full
-          group-hover:left-0
-        "
+        className={clsx(
+          'absolute bottom-0 left-1/2 w-0 bg-primary transition-all duration-200 group-hover:w-full group-hover:left-0',
+          mode === 'mobile' && 'h-[0.3rem]',
+          mode === 'desktop' && 'h-[0.1rem]'
+        )}
       ></span>
     </Link>
   )

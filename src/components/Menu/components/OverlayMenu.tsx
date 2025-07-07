@@ -7,8 +7,9 @@ import Link from 'next/link'
 
 interface OverlayMenuProps {
   isOpen: boolean
+  isUserSignedIn: boolean
   toggleMenu: () => void
-  menuItems: MenuLinkProps[]
+  menuItems: Pick<MenuLinkProps, 'href' | 'label'>[]
 }
 
 const CloseButton = ({ toggleMenu }: Pick<OverlayMenuProps, 'toggleMenu'>) => {
@@ -30,7 +31,7 @@ const LoggedOutButtons = () => (
       'flex flex-col gap-3 w-2/3 items-center transition-transform duration-300 ease-in-out'
     }
   >
-    <Button size="large" text="Entrar" fullWidth mode="primary" />
+    <Button size="large" text="Log In now" fullWidth mode="primary" />
 
     <h4 className="text-[12px] text-black font-medium"> or </h4>
 
@@ -56,12 +57,17 @@ const LoggedOutButtons = () => (
 const MenuItems = ({ menuItems }: Pick<OverlayMenuProps, 'menuItems'>) => (
   <ul className="flex flex-col gap-9 items-center">
     {menuItems.map((item) => (
-      <MenuLink key={item.href} {...item} />
+      <MenuLink key={item.href} {...item} mode="mobile" />
     ))}
   </ul>
 )
 
-const OverlayMenu = ({ isOpen, toggleMenu, menuItems }: OverlayMenuProps) => {
+const OverlayMenu = ({
+  isOpen,
+  isUserSignedIn,
+  toggleMenu,
+  menuItems
+}: OverlayMenuProps) => {
   return (
     <div
       aria-label="Menu"
@@ -80,7 +86,7 @@ const OverlayMenu = ({ isOpen, toggleMenu, menuItems }: OverlayMenuProps) => {
         )}
       >
         <MenuItems menuItems={menuItems} />
-        <LoggedOutButtons />
+        {isUserSignedIn ? null : <LoggedOutButtons />}
       </div>
     </div>
   )

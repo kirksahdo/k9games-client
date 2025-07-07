@@ -16,17 +16,16 @@ const Logo: React.FC<LogoProps> = ({
   const viewBox = hideText ? '0 0 60 48' : '0 0 158 48'
 
   const sizeClass =
-    size === 'large'
-      ? hideText
-        ? 'w-24 h-24'
-        : 'w-80 h-24'
-      : hideText
-        ? 'w-14 h-14'
-        : 'w-44 h-14'
+    size === 'large' ? 'w-80 h-24' : hideText ? 'w-14 h-14' : 'w-44 h-14'
+
+  const colorClass = {
+    white: 'text-white',
+    black: 'text-black'
+  }
 
   return (
     <div
-      className={`text-${color} ${sizeClass} max-md:w-[5.8rem] max-md:h-[4.5rem] ${className}`}
+      className={`${colorClass[color]} ${sizeClass} max-md:w-[5.8rem] max-md:h-[4.5rem] ${className}`}
       {...props}
     >
       <svg

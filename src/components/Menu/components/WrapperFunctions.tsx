@@ -6,12 +6,12 @@ const WrapperFunctions = () => {
   return (
     <div className="flex flex-1 gap-[1.19rem] justify-end items-center">
       <SearchIcon
-        className="size-8 text-white cursor-pointer"
+        className="size-6 text-white cursor-pointer"
         aria-label="Search"
       />
-      <div className="size-8 flex items-center relative cursor-pointer">
+      <div className="size-6 flex items-center relative cursor-pointer">
         <div
-          className="size-4 rounded-full bg-secondary text-white font-medium absolute flex justify-center items-center top-0 right-0"
+          className="size-4 rounded-full bg-secondary text-white font-medium absolute flex justify-center items-center -top-1 right-0"
           aria-label="Open Cart"
         >
           <span className="text-[0.5rem] leading-normal select-none">12</span>

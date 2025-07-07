@@ -1,42 +1,21 @@
-import { useState } from 'react'
-import OverlayMenu from './components/OverlayMenu'
-import WrapperFunctions from './components/WrapperFunctions'
-import WrapperLogo from './components/WrapperLogo'
-import WrapperMenuBar from './components/WrapperMenuBar'
-import { MenuLinkProps } from './components/MenuLink'
+import MidiaMatch from '../MidiaMatch'
+import DesktopMenu from './components/DesktopMenu'
+import MobileMenu from './components/MobileMenu'
 
-const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false)
+export type MenuProps = {
+  username?: string
+}
 
-  const menuItems: MenuLinkProps[] = [
-    {
-      href: '#',
-      label: 'Home'
-    },
-    {
-      href: '#',
-      label: 'Explore'
-    }
-  ]
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
+const Menu = ({ username }: MenuProps) => {
   return (
-    <nav className="w-full p-4 flex items-center relative">
-      <WrapperMenuBar toggleMenu={toggleMenu} />
-
-      <WrapperLogo />
-
-      <WrapperFunctions />
-
-      <OverlayMenu
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-        menuItems={menuItems}
-      />
-    </nav>
+    <>
+      <MidiaMatch lessThan="md">
+        <MobileMenu username={username} />
+      </MidiaMatch>
+      <MidiaMatch greaterThan="md">
+        <DesktopMenu username={username} />
+      </MidiaMatch>
+    </>
   )
 }
 

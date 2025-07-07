@@ -2,19 +2,22 @@ import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 
 import Menu from '.'
+import { setMedia } from 'mock-match-media'
 
 describe('<Menu />', () => {
-  it('should render the menu', () => {
+  it('should render the menu in mobile', () => {
+    setMedia({ width: '300px' })
     render(<Menu />)
 
-    expect(screen.getByRole('navigation')).toBeInTheDocument()
+    expect(screen.getByLabelText(/mobile menu/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/K9Games/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/open cart/i)).toBeInTheDocument()
+    expect(screen.getAllByLabelText('K9Games')[0]).toBeInTheDocument()
+    expect(screen.getAllByLabelText(/search/i)[0]).toBeInTheDocument()
+    expect(screen.getAllByLabelText('Open Cart')[0]).toBeInTheDocument()
   })
 
   it('should open when the menu icon is clicked and close when the close button is clicked', async () => {
+    setMedia({ width: '300px' })
     const user = userEvent.setup()
     render(<Menu />)
 
@@ -35,5 +38,25 @@ describe('<Menu />', () => {
 
     expect(menuOverlay).toHaveClass('opacity-0')
     expect(menuOverlay).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  it('should show register box when logged out in mobile', () => {
+    setMedia({ width: '300px' })
+    render(<Menu />)
+
+    expect(screen.queryByText(/my account/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/log in now/i)).toBeVisible()
+    expect(screen.getByText(/sign up/i)).toBeVisible()
+  })
+
+  it('should show wishlight and account when logged in mobile', () => {
+    setMedia({ width: '300px' })
+    render(<Menu username="will" />)
+
+    expect(screen.getByText(/my account/i)).toBeVisible()
+    expect(screen.getByText(/wishlist/i)).toBeVisible()
+    expect(screen.queryByText(/log in now/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument()
   })
 })
