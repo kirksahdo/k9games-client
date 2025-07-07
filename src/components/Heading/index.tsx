@@ -6,13 +6,15 @@ export interface HeadingProps {
   color?: 'white' | 'black'
   line?: 'left' | 'bottom'
   lineColor?: 'primary' | 'secondary'
+  size?: 'large' | 'small'
 }
 
 const Heading = ({
   children,
   color = 'black',
   line,
-  lineColor = 'primary'
+  lineColor = 'primary',
+  size = 'large'
 }: HeadingProps) => {
   return (
     <div
@@ -23,7 +25,7 @@ const Heading = ({
       )}
     >
       <h2
-        className={`text-${color} text-xl md:text-2xl font-bold inline-block`}
+        className={`text-${color} ${size == 'large' ? 'text-xl md:text-2xl' : 'text-[16px]'} font-bold inline-block`}
       >
         {children}
       </h2>

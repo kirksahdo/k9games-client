@@ -59,4 +59,13 @@ describe('<Heading />', () => {
     )
     expect(wrapper?.querySelector('span')).toHaveClass('bg-secondary')
   })
+
+  it('should render a small heading', () => {
+    const headingText = 'text'
+    render(<Heading size="small">{headingText}</Heading>)
+
+    expect(screen.getByRole('heading', { name: headingText })).toHaveClass(
+      'text-[16px]'
+    )
+  })
 })
