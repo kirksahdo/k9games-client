@@ -19,13 +19,13 @@ const Heading = ({
   return (
     <div
       className={clsx(
-        'flex flex-col gap-0.75',
+        'flex flex-col gap-0.75 w-fit',
         line === 'left' &&
           `border-l-[0.4375rem] border-solid pl-3 border-${lineColor}`
       )}
     >
       <h2
-        className={`text-${color} ${size == 'large' ? 'text-xl md:text-2xl' : 'text-[16px]'} font-bold inline-block`}
+        className={`text-${color} w-fit ${size == 'large' ? 'text-xl md:text-2xl' : 'text-[16px]'} font-bold inline-block`}
       >
         {children}
       </h2>
