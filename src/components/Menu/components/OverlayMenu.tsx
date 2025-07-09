@@ -57,7 +57,7 @@ const LoggedOutButtons = () => (
 const MenuItems = ({ menuItems }: Pick<OverlayMenuProps, 'menuItems'>) => (
   <ul className="flex flex-col gap-9 items-center">
     {menuItems.map((item) => (
-      <MenuLink key={item.href} {...item} mode="mobile" />
+      <MenuLink key={item.label} {...item} mode="mobile" />
     ))}
   </ul>
 )

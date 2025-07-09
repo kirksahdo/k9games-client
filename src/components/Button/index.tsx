@@ -7,12 +7,13 @@ export type ButtonProps = {
   mode?: 'primary' | 'secondary'
   Icon?: ComponentType<{ className?: string }>
   fullWidth?: boolean
-  onClick?: () => (event: React.MouseEventHandler<HTMLButtonElement>) => void
+  onClick?: () => void
 }
 
 const Button = ({
   size = 'medium',
   mode = 'primary',
+  onClick,
   text,
   fullWidth,
   Icon,
@@ -48,6 +49,7 @@ const Button = ({
         'rounded-sm cursor-pointer flex items-center justify-center gap-1.5 font-medium',
         fullWidth && 'w-full'
       )}
+      onClick={onClick}
       {...props}
     >
       {Icon && <Icon className={sizeClasses[size].icon} />}

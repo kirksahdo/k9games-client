@@ -13,5 +13,5 @@ export const WithIcon: StoryObj<ButtonProps> = {
     text: 'Button',
     Icon: MdAddShoppingCart
   },
-  render: (args) => <Button {...args} />
+  render: (args) => <Button onClick={() => {}} {...args} />
 }
